@@ -10,7 +10,7 @@ router.get('/', function(req, res) {
 });
 
 //ponemos rutas de la 1a pregunta y la 1a respuesta
-router.get('/quizes/question', quizController.question);
-router.get('/quizes/answer', quizController.answer);
+router.get('/quizes/question', 	quizController.question);
+router.get('/quizes/answer', 	quizController.answer);
 
 module.exports = router;
