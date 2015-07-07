@@ -5,9 +5,9 @@
   "scripts": {
     "start": "node ./bin/www"
   },
-  "engines: "{
+  "engines": {
 	"node": "0.10.x",
-	"npm": ""1.4.x"
+	"npm": "1.4.x"
   },
   "dependencies": {
     "body-parser": "~1.8.1",
