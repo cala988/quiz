@@ -9,9 +9,10 @@ router.get('/', function(req, res) {
   res.render('index', { title: 'Quiz' });
 });
 
-//ponemos rutas de la 1a pregunta y la 1a respuesta
-router.get('/quizes/question', 	quizController.question);
-router.get('/quizes/answer', 	quizController.answer);
+// Definición de rutas de /quizes
+router.get('/quizes',                      quizController.index);
+router.get('/quizes/:quizId(\\d+)',        quizController.show);
+router.get('/quizes/:quizId(\\d+)/answer', quizController.answer);
 
 //Ruta para los creditos
 router.get('/author', 	quizController.author);
