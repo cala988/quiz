@@ -13,13 +13,36 @@ exports.load = function(req, res, next, quizId) {
 };
 
 // GET /quizes
+/*Anterior
 exports.index = function(req, res) {
     models.Quiz.findAll().then(
     function(quizes) {
       res.render('quizes/index', { quizes: quizes});
     }
   ).catch(function(error) { next(error);})
-};
+};*/
+
+//GET /quizes. Buscamos la pregunta 
+exports.index = function(req, res) {
+  var buscar = ("%" + req.query.search + "%").replace(/ /g, '%');
+  
+  //Si existe la variable buscar...
+  if(req.query.search) {
+    models.Quiz.findAll({
+		where: ["UPPER(pregunta) LIKE ?", buscar.toUpperCase()], 
+		order: [['pregunta',  'ASC']]}
+	).then(function(quizes) {
+		res.render('quizes/index', { quizes: quizes});
+	}).catch(function(error)  {next(error);})
+    
+  }else {
+	models.Quiz.findAll().then(
+        function(quizes) {
+			res.render('quizes/index', { quizes: quizes});
+		}
+      ).catch(function(error){ next(error); })
+  }
+ };
 
 // GET /quizes/:id
 exports.show = function(req, res) {
