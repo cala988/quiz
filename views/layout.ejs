@@ -27,6 +27,16 @@
 		</nav>	
 		
 		<section class="main" id="s1">
+			
+			<% if (errors.respuesta || errors.pregunta) { %>
+			  <span id='ErrorMsgs'>
+				Corregir errores:<br/>
+				<% for (var i in errors) { %>
+				   <span> <%= errors[i] %> </span><br/>
+				<% } %>
+			  </span>
+			<% } %>
+		
 			<div><%- body %></div>
 		</section>
 		
