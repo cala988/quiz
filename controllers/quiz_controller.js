@@ -61,7 +61,7 @@ exports.answer = function(req, res) {
 // GET /quizes/new
 exports.new = function(req, res) {
   var quiz = models.Quiz.build(
-    {pregunta: "Pregunta", respuesta: "Respuesta"}
+    {pregunta: "Pregunta", respuesta: "Respuesta", tema: "Tema"}
   );
 
   res.render('quizes/new', {quiz: quiz, errors: []});
@@ -93,10 +93,11 @@ exports.edit = function(req, res) {
 exports.update = function(req, res) {
   req.quiz.pregunta  = req.body.quiz.pregunta;
   req.quiz.respuesta = req.body.quiz.respuesta;
+  req.quiz.tema = req.body.quiz.tema;
 
   var errors=req.quiz.validate();
 	if(errors){
-        res.render('quizes/edit', {quiz: req.quiz, errors: err.errors});
+        res.render('quizes/edit', {quiz: req.quiz, errors: errors});
     } else {
         req.quiz     // save: guarda campos pregunta, respuesta y tema en DB
         .save( {fields: ["pregunta", "respuesta", "tema"]})

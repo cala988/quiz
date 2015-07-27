@@ -28,7 +28,7 @@
 		
 		<section class="main" id="s1">
 			
-			<% if (errors.respuesta || errors.pregunta) { %>
+			<% if (errors.respuesta || errors.pregunta || errors.tema) { %>
 			  <span id='ErrorMsgs'>
 				Corregir errores:<br/>
 				<% for (var i in errors) { %>
