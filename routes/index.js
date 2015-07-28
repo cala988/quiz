@@ -3,6 +3,8 @@ var router = express.Router();
 
 //añadimos el enrutador del quiz
 var quizController = require('../controllers/quiz_controller');
+//añadimos el enrutador de los comentarios
+var commentController = require('../controllers/comment_controller');
 
 /* GET home page. */
 router.get('/', function(req, res) {
@@ -21,6 +23,9 @@ router.post('/quizes/create', 				quizController.create);
 router.get('/quizes/:quizId(\\d+)/edit',   	quizController.edit);
 router.put('/quizes/:quizId(\\d+)',        	quizController.update);
 router.delete('/quizes/:quizId(\\d+)',     quizController.destroy);
+//Para los comentarios:
+router.get('/quizes/:quizId(\\d+)/comments/new',            commentController.new);
+router.post('/quizes/:quizId(\\d+)/comments',              commentController.create);
 
 //Ruta para los creditos
 router.get('/author', 	quizController.author);
