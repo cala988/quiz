@@ -6,7 +6,19 @@
 
 <p><a href="/quizes/<%= quiz.id %>/comments/new"><button>Nuevo comentario</button></a></p>
 
+
+
+<%
+/* Para seguir variables problemáticas: ojo con quiz.comments!!!
+console.log("\n\nquiz = "+JSON.stringify(quiz, null,2)+"\n\n");
+console.log("\n\nquiz.id = "+quiz.id);
+console.log("\nquiz.Comments = "+quiz.Comments);
+console.log("\nlongitud = "+quiz.comments.length);
+console.log("\nquiz.Comments[0].texto = "+quiz.comments[0].texto);
+*/
+%>
+
 <p><strong>Comentarios:</strong></p>
-<%for(index in quiz.Comments){%>
-	<p>- <%=quiz.Comments[index].texto%></p>
+<%for(var i=0; i<quiz.comments.length; i++){%>
+	<p>- <%=quiz.comments[i].texto%></p>
 <%}%>

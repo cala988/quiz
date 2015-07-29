@@ -9,7 +9,7 @@ exports.new = function(req, res) {
 exports.create = function(req, res){
     var comment = models.Comment.build( 
         { texto: req.body.comment.texto,
-          quizid: req.params.quizId } 
+          QuizId: req.params.quizId } 
     );
     
     var errors = comment.validate();//ya qe el objeto errors no tiene then(
@@ -17,7 +17,6 @@ exports.create = function(req, res){
     {
         //var i=0; var errores=new Array();//se convierte en [] con la propiedad message por compatibilida con layout
         //for (var prop in errors) errores[i++]={message: errors[prop]};        
-		console.log(errors);
         res.render('comments/new.ejs', {comment: comment, quizid: req.params.quizId, errors: errors});
     } else {
         comment // save: guarda en DB campo texto de comment
