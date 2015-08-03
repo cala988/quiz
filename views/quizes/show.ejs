@@ -20,5 +20,13 @@ console.log("\nquiz.Comments[0].texto = "+quiz.comments[0].texto);
 
 <p><strong>Comentarios:</strong></p>
 <%for(var i=0; i<quiz.comments.length; i++){%>
-	<p>- <%=quiz.comments[i].texto%></p>
+	
+	<%if(quiz.comments[i].publicado || session.user){%>
+		<p>- <%=quiz.comments[i].texto%>
+			<%if(session.user && !quiz.comments[i].publicado){%>
+				<a href="/quizes/<%= quiz.id %>/comments/<%=quiz.comments[i].id%>/publish"><button>Publicar</button></a>
+			<%}%>
+		</p>
+	<%}%>	
+	
 <%}%>
