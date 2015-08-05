@@ -34,6 +34,24 @@ app.use(session());
 app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname, 'public')));
 
+// midelware para autologout de 2minutos inactivo
+app.use(function(req, res, next) {
+    if(req.session.user){
+        if(!req.session.user.temporizador){
+            req.session.user.temporizador=(new Date()).getTime();
+        }
+		else{
+            if((new Date()).getTime()-req.session.user.temporizador > 120000){
+                delete req.session.user;
+            }
+			else{
+                req.session.user.temporizador=(new Date()).getTime();
+            }
+        }
+    }
+    next();
+});
+
 // Helpers dinamicos:
 app.use(function(req, res, next) {
 
